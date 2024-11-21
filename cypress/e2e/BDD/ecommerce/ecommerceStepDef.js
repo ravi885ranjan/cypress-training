@@ -1,0 +1,30 @@
+const { Given,When,Then } = require("@badeball/cypress-cucumber-preprocessor");
+
+Given("I am on e-commerce page",function(){
+
+    this.homePageO.goto(Cypress.env('url')+"loginpagePractise/#")
+})
+
+When("I login to the application",function(){
+    this.productPageO = this.homePageO.login(this.data.username, this.data.password)
+    this.productPageO.pageValidation()
+    this.productPageO.verifyProductCardLimit().should('have.length',4)
+})
+
+When("I add items to the cart and checked out",function(){
+    this.productPageO.selectProduct(this.data.productName)
+    this.productPageO.selectFirstProduct()
+    this.cartPageO = this.productPageO.goToCart()
+})
+
+When("validate total price limit", function(){
+    this.cartPageO.sumOfProducts().then(($e)=>{
+        expect($e).to.be.lessThan(200000);
+    })
+})
+
+Then("select country submit and verify thank you.",function(){
+    cy.contains('button','Checkout').click()
+        cy.submitFormDetails()
+        cy.get('.alert-success').should('contain','Success')
+})
