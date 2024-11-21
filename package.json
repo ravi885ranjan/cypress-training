@@ -6,11 +6,7 @@
     "test": "npx cypress run",
     "headedTest": "npx cypress run --headed",
     "recordedTest": "npx cypress run --record --key 3042ff93-d8e6-4225-bd1e-65858c906023",
-    "e2eTest": "npx cypress run --record --key 3042ff93-d8e6-4225-bd1e-65858c906023 --spec \"cypress/e2e/End2EndTests.js\"",
-    "jenkins-test": "cypress run",
-    "jenkins-headedTest": "cypress run --headed",
-    "jenkins-recordedTest": "cypress run --record --key 3042ff93-d8e6-4225-bd1e-65858c906023",
-    "jenkins-e2eTest": "cypress run --record --key 3042ff93-d8e6-4225-bd1e-65858c906023 --spec \"cypress/e2e/End2EndTests.js\""
+    "e2eTest": "npx cypress run --record --key 3042ff93-d8e6-4225-bd1e-65858c906023 --spec \"cypress/e2e/End2EndTests.js\""
   },
   "author": "",
   "license": "ISC",
