@@ -6,7 +6,14 @@
     "test": "npx cypress run",
     "headedTest": "npx cypress run --headed",
     "recordedTest": "npx cypress run --record --key 3042ff93-d8e6-4225-bd1e-65858c906023",
-    "e2eTest": "npx cypress run --record --key 3042ff93-d8e6-4225-bd1e-65858c906023 --spec \"cypress/e2e/End2EndTests.js\""
+    "e2eTest": "npx cypress run --record --key 3042ff93-d8e6-4225-bd1e-65858c906023 --spec \"cypress/e2e/End2EndTests.js\"",
+    "e2eBDDTest": "npx cypress run --record --key 3042ff93-d8e6-4225-bd1e-65858c906023 --spec \"cypress/e2e/BDD/ecommerce.feature\""
+  },
+  "cypress-cucumber-preprocessor": {
+    "json": {
+      "enabled": true,
+      "output": "cypress/cucumberReports/results.json"
+    }
   },
   "author": "",
   "license": "ISC",
@@ -14,7 +21,8 @@
   "devDependencies": {
     "cypress": "^13.15.2",
     "cypress-iframe": "^1.0.1",
-    "cypress-mochawesome-reporter": "^3.8.2"
+    "cypress-mochawesome-reporter": "^3.8.2",
+    "multiple-cucumber-html-reporter": "^3.8.0"
   },
   "dependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^21.0.3",

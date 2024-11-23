@@ -11,6 +11,12 @@ When("I login to the application",function(){
     this.productPageO.verifyProductCardLimit().should('have.length',4)
 })
 
+When("I login to the application using",function(datatable){
+    this.productPageO = this.homePageO.login(datatable.rawTable[1][0], datatable.rawTable[1][1])
+    this.productPageO.pageValidation()
+    this.productPageO.verifyProductCardLimit().should('have.length',4)
+})
+
 When("I add items to the cart and checked out",function(){
     this.productPageO.selectProduct(this.data.productName)
     this.productPageO.selectFirstProduct()

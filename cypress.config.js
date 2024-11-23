@@ -29,7 +29,8 @@ module.exports = defineConfig({
     //  require('cypress-mochawesome-reporter/plugin')(on)
     //},
     setupNodeEvents,
-    specPattern: 'cypress/e2e/BDD/*.feature'
+    //specPattern: 'cypress/e2e/BDD/*.feature'
+    specPattern: 'cypress/e2e/*.js'
   },
   env: {
     url: "https://rahulshettyacademy.com/"

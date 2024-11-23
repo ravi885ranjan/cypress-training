@@ -30,6 +30,30 @@ Cypress.Commands.add('getIframeBody',()=>{
     .its('0.contentDocument.body').should('not.be.undefined')
     .then(cy.wrap)
 })
+Cypress.Commands.add('interceptGetBook',()=>{
+    const request = {
+        method: "GET",
+        url: "https://rahulshettyacademy.com/Library/GetBook.php?AuthorName=shetty"
+    }
+    const response = {
+        statusCode: 200,
+        body: [{
+                              "book_name": "abc",
+                              "isbn": "ABC",
+                              "aisle": "2222"
+                          }]
+    }
+    return cy.intercept(request,response)
+})
+Cypress.Commands.add('loginApi',()=>{
+    cy.request('POST',"https://rahulshettyacademy.com/api/ecom/auth/login",{
+        "userEmail": "ravi885ranjan@gmail.com",
+        "userPassword": "Demo@123"
+    }).then((res)=>{
+        expect(res.status).to.equal(200)
+        Cypress.env('token',res.body.token)
+    })
+})
 //
 //
 // -- This will overwrite an existing command --
