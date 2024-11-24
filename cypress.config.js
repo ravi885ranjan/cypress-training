@@ -7,9 +7,23 @@ const {
 } = require("@badeball/cypress-cucumber-preprocessor/browserify");
 const browserify = require("@cypress/browserify-preprocessor");
 
+const sqlServer = require('cypress-sql-server');
+
 async function setupNodeEvents(on,config) {
+  config.db = {
+    userName: "rsa",
+    password: "Demo@123",
+    server: "trainingdbserver1.database.windows.net",
+    options: {
+      database: "trainingsql",
+      encrypt: true,
+      rowCollectionOnRequestCompletion: true
+    }
+}
   // This is required for the preprocessor to be able to generate JSON reports after each run, and more,
   await addCucumberPreprocessorPlugin(on, config);
+  tasks = sqlServer.loadDBPlugin(config.db);
+  on('task', tasks);
 
   on(
     "file:preprocessor",

@@ -35,8 +35,11 @@ describe("test suite apis",()=>{
             //array of json nodes
             const csv = await neatCSV(text)
             cy.log(csv)
+            //for column's name with space
             const actual = csv[0]["Product Name"]
             expect(productName).to.equal(actual)
+            //for column's name without space
+            expect('United Kingdom').to.equal(csv[0].Address)
         })
         
     })
