@@ -19,7 +19,7 @@ describe("test suite apis",()=>{
         cy.get('.card-body b').eq(0).then(function($e1){
             productName = $e1.text()
         })
-        cy.get("[routerlink*='cart']").click()
+        cy.get("[routerlink*='cart']").click({force: true})
         cy.contains("Checkout").click()
         cy.get("[placeholder*='Country']").type("United Kingdom")
         cy.contains('span','United Kingdom').click()

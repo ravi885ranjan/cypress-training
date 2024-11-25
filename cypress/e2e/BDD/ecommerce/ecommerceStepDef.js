@@ -30,7 +30,5 @@ When("validate total price limit", function(){
 })
 
 Then("select country submit and verify thank you.",function(){
-    cy.contains('button','Checkout').click()
-        cy.submitFormDetails()
-        cy.get('.alert-success').should('contain','Success')
+    this.cartPageO.submitCartItems()
 })

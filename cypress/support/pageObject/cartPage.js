@@ -11,6 +11,12 @@ class cartPage {
         })
         return promise
     }
+
+    submitCartItems(){
+        cy.contains('button','Checkout').click()
+        cy.submitFormDetails()
+        cy.get('.alert-success').should('contain','Success')
+    }
 }
 
 export default cartPage;
