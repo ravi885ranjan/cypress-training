@@ -1,7 +1,3 @@
-import productPage from "../support/pageObject/productPage"
-//const neatCSV = require('neat-csv')
-import neatCSV from 'neat-csv'
-
 let productName
 describe("test suite apis",()=>{
 

@@ -53,6 +53,7 @@ module.exports = defineConfig({
       // implement node event listeners here
     //  require('cypress-mochawesome-reporter/plugin')(on)
     //},
+    //events for OS Node JS engine like fs, db etc
     setupNodeEvents,
     specPattern: 'cypress/e2e/BDD/*.feature'
     //specPattern: 'cypress/e2e/*.js'
