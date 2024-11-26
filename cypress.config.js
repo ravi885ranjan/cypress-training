@@ -10,6 +10,7 @@ const browserify = require("@cypress/browserify-preprocessor");
 const sqlServer = require('cypress-sql-server');
 const excelToJson = require('convert-excel-to-json');
 const fs = require('fs');
+const ExcelJs = require('exceljs')
 
 async function setupNodeEvents(on,config) {
   config.db = {
@@ -40,9 +41,39 @@ async function setupNodeEvents(on,config) {
     return result
     }
   })
+  on('task',{
+    //multiple arguments in task should be sent as an array
+    async writeExcelTest({searchText,replaceText,change,filepath,sheetName}) {
+      const workBook = new ExcelJs.Workbook()
+      await workBook.xlsx.readFile(filepath)
+      const workSheet = workBook.getWorksheet(sheetName)
+      let output = await readExcel(workSheet,searchText)
+          const cell = workSheet.getCell(output.row,output.col+change.colChange)
+          cell.value = replaceText
+          return workBook.xlsx.writeFile(filepath).then(()=>{
+            return true
+        }).catch((error)=>{
+            return false
+        })
+  }
+  })
 
   // Make sure to return the config object as it might have been modified by the plugin.
   return config;
+}
+
+async function readExcel(workSheet,searchText) {
+    let output = {row:-1,col:-1}
+    workSheet.eachRow((row,rowNumber)=>
+        {
+            row.eachCell((cell,colNumber)=>{
+                if(cell.value === searchText){
+                    output.row = rowNumber
+                    output.col = colNumber
+                }
+            })
+        })
+        return output
 }
 module.exports = defineConfig({
   projectId: "3544gw",
@@ -55,8 +86,8 @@ module.exports = defineConfig({
     //},
     //events for OS Node JS engine like fs, db etc
     setupNodeEvents,
-    specPattern: 'cypress/e2e/BDD/*.feature'
-    //specPattern: 'cypress/e2e/*.js'
+    //specPattern: 'cypress/e2e/BDD/*.feature'
+    specPattern: 'cypress/e2e/*.js'
   },
   env: {
     url: "https://rahulshettyacademy.com/"
