@@ -22,10 +22,11 @@ describe("test suite apis",()=>{
         cy.wait("@requestAlter")
     })
 
-    it("api call",()=>{
+    it("api call to see already exists when same data sent again",()=>{
+        const uuid = crypto.randomUUID();
         cy.request('POST',"http://216.10.245.166/Library/Addbook.php",{
             "name": "test-book3",
-            "isbn": "dfgsdg3",
+            "isbn": uuid,
             "aisle": "8803",
             "author": "testing-author"
         }).then((res)=>{
