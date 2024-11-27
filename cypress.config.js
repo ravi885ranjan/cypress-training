@@ -87,7 +87,7 @@ module.exports = defineConfig({
     //events for OS Node JS engine like fs, db etc
     setupNodeEvents,
     //specPattern: 'cypress/e2e/BDD/*.feature'
-    specPattern: 'cypress/e2e/*.js'
+    specPattern: 'cypress/e2e/**/*.js'
   },
   env: {
     url: "https://rahulshettyacademy.com/"
