@@ -77,7 +77,7 @@ async function readExcel(workSheet,searchText) {
 }
 module.exports = defineConfig({
   projectId: "3544gw",
-  defaultCommandTimeout: 6000,
+  defaultCommandTimeout: 10000,
   reporter: 'cypress-mochawesome-reporter',
   e2e: {
     //setupNodeEvents(on, config) {
@@ -86,11 +86,12 @@ module.exports = defineConfig({
     //},
     //events for OS Node JS engine like fs, db etc
     setupNodeEvents,
-    //specPattern: 'cypress/e2e/BDD/*.feature'
-    specPattern: 'cypress/e2e/practice/*.js'
+    specPattern: 'cypress/e2e/BDD/*.feature'
+    //specPattern: 'cypress/e2e/practice/*.js'
   },
   env: {
-    url: "https://rahulshettyacademy.com/"
+    url: "https://rahulshettyacademy.com/",
+    amazonHomePage: "https://www.amazon.com"
   },
   retries: {
     runMode: 1

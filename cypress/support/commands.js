@@ -54,6 +54,11 @@ Cypress.Commands.add('loginApi',()=>{
         Cypress.env('token',res.body.token)
     })
 })
+Cypress.Commands.add('validateTextInUrl',(searchText)=>{
+    cy.url().then((url)=>{
+        expect(url).to.include(searchText)
+    })
+})
 //
 //
 // -- This will overwrite an existing command --
