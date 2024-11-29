@@ -18,3 +18,20 @@ When('user selects sort by price',function(){
 Then('the user should see products with prices in ascending order',function(){
     this.homePageO.validateItemsPriceInAscOrder()
 })
+
+When('adds an item to the cart',function(){
+    this.homePageO.addOneRandomItemToCart()
+})
+
+When('user clicks on go to cart',function(){
+    this.cartPageO = this.homePageO.goToCart()
+})
+
+Then('user should see an item in the cart',function(){
+    this.cartPageO.itemsInCart().should('have.length',1)
+})
+
+When('user clicks on proceed to checkout',function(){
+    this.cartPageO.proceedToCheckout()
+})
+

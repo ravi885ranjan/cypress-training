@@ -1,3 +1,5 @@
+import CartPage from "./CartPage"
+
 class HomePage {
     searchByProductByText(searchText){
     cy.get('#twotabsearchtextbox').type(searchText)
@@ -21,6 +23,16 @@ class HomePage {
                 expect(pricesInOrder[i]).to.be.lte(pricesInOrder[i+1])
             }
         })
+    }
+
+    addOneRandomItemToCart(){
+        cy.contains('button','Add to cart').eq(0).trigger('click')
+        cy.wait(2000)
+    }
+
+    goToCart(){
+        cy.get('a[href*="nav_cart"]').click()
+        return new CartPage()
     }
 }
 export default HomePage;
