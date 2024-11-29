@@ -16,7 +16,12 @@ When('user selects sort by price',function(){
 })
 
 Then('the user should see products with prices in ascending order',function(){
-    this.homePageO.validateItemsPriceInAscOrder()
+    cy.getOrderedPriceList().as('priceList')
+    cy.get('@priceList').then((pricesInOrder)=>{
+        for(let i=0;i<pricesInOrder.length;i++){
+            expect(pricesInOrder[i]).to.be.lte(pricesInOrder[i+1])
+        }
+    })
 })
 
 When('adds an item to the cart',function(){

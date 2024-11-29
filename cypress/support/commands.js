@@ -59,6 +59,16 @@ Cypress.Commands.add('validateTextInUrl',(searchText)=>{
         expect(url).to.include(searchText)
     })
 })
+Cypress.Commands.add('getOrderedPriceList',()=>{
+    const pricesInOrder = [];
+        cy.get('.a-price span.a-offscreen').each(($e1, index, $list)=>{
+            cy.wrap($e1).invoke('prop', 'innerText').then(function(text){
+                pricesInOrder[index] = Number(String(text).replace('$',''))
+            })
+        }).then(function(){
+            return pricesInOrder
+        })
+})
 //
 //
 // -- This will overwrite an existing command --

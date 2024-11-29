@@ -12,19 +12,6 @@ class HomePage {
     cy.wait(3000)
     }
 
-    validateItemsPriceInAscOrder(){
-        const pricesInOrder = [];
-        cy.get('.a-price span.a-offscreen').each(($e1, index, $list)=>{
-            cy.wrap($e1).invoke('prop', 'innerText').then(function(text){
-                pricesInOrder[index] = Number(String(text).replace('$',''))
-            })
-        }).then(function(){
-            for(let i=0;i<pricesInOrder.length;i++){
-                expect(pricesInOrder[i]).to.be.lte(pricesInOrder[i+1])
-            }
-        })
-    }
-
     addOneRandomItemToCart(){
         cy.contains('button','Add to cart').eq(0).trigger('click')
         cy.wait(3000)
