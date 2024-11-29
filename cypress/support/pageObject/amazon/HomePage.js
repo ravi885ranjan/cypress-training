@@ -9,7 +9,7 @@ class HomePage {
     sortByPrice(){
     cy.contains('Sort by:').click({force:true})
     cy.get('[aria-labelledby="s-result-sort-select_1"]').trigger('click')
-    cy.wait(2000)
+    cy.wait(3000)
     }
 
     validateItemsPriceInAscOrder(){
@@ -27,7 +27,7 @@ class HomePage {
 
     addOneRandomItemToCart(){
         cy.contains('button','Add to cart').eq(0).trigger('click')
-        cy.wait(2000)
+        cy.wait(3000)
     }
 
     goToCart(){

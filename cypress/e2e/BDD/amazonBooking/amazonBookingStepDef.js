@@ -33,5 +33,9 @@ Then('user should see an item in the cart',function(){
 
 When('user clicks on proceed to checkout',function(){
     this.cartPageO.proceedToCheckout()
+    this.signupPageO = this.cartPageO.getSignUpPage()
 })
 
+Then('signup page should appear',function(){
+    this.signupPageO.accountCreationButtonShouldBePresent()
+})
